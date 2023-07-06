@@ -1,0 +1,16 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+ENV PIPENVVERSION=2023.7.4
+ENV PIPENV_VENV_IN_PROJECT=1
+ENV PIP_NO_CACHE_DIR=1
+
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir pipenv==$PIPENVVERSION && \
+    pip install --no-cache-dir jupyter && \
+    pip install --no-cache-dir jupyterlab
+
+EXPOSE 8888
+
+ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]

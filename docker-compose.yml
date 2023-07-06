@@ -1,0 +1,14 @@
+version: "3"
+services:
+  jupyter:
+    restart: always
+    container_name: jupyter
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.jupyter
+    expose:
+      - "8888:8888"
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./volumes/jupyter-volume:/app"
